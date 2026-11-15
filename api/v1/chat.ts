@@ -89,7 +89,12 @@ function parseChatRequest(raw: unknown): ParseResult {
  * POST /api/v1/chat
  * Authenticated proxy to NVIDIA NIM chat completions (PRD §8).
  * Supports streaming (SSE pass-through) and non-streaming JSON.
+ *
+ * Vercel hobby functions default to 10s — NIM cold starts regularly exceed
+ * that, so extend the execution window to the hobby maximum.
  */
+export const maxDuration = 60;
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("X-Content-Type-Options", "nosniff");
 
