@@ -1,18 +1,14 @@
-export const DEFAULT_MODEL = process.env.DEFAULT_MODEL || "z-ai/glm-5.3-flash";
+export const DEFAULT_MODEL = process.env.DEFAULT_MODEL || "minimaxai/minimax-m3.1-flash";
 
-// Current NVIDIA NIM free-tier catalogue (verified live 2026-11-15).
-// The 2024-era ids (llama-3.1-*, gemma-2-9b, mixtral, qwen2.5-7b) return
-// 404/410 upstream now — NVIDIA retired them. Override with ALLOWED_MODELS.
+// Verified live against NVIDIA NIM (2026-11-15): these three stream real
+// completions with this account. The 2024-era ids (llama-3.1-*, gemma-2-9b,
+// mixtral, qwen2.5-7b) return 404/410, and several 2026 free-tier ids
+// (glm-5.3-flash, gpt-oss-20b, deepseek-v4.1-flash, gemma-4-31b) hang or need
+// per-family registration. Override with ALLOWED_MODELS.
 const FALLBACK_ALLOWLIST = [
-  "z-ai/glm-5.3-flash",
-  "nvidia/nemotron-3.5-lightning-30b-a3b",
-  "nvidia/nemotron-3-super-120b-a12b",
-  "deepseek-ai/deepseek-v4.1-flash",
-  "openai/gpt-oss-20b",
-  "meta/llama-3.2-11b-vision-instruct",
-  "google/gemma-4-31b-it",
-  "mistralai/mistral-large-4-1t-a52b",
   "minimaxai/minimax-m3.1-flash",
+  "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "mistralai/mistral-large-4-1t-a52b",
 ];
 
 export function allowedModels(): string[] {
