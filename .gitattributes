@@ -1,0 +1,7 @@
+# Keep shell/yaml files LF; TypeScript and JSON normalized.
+* text=auto
+
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
